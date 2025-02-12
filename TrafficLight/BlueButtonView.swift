@@ -8,11 +8,30 @@
 import SwiftUI
 
 struct BlueButtonView: View {
+    let buttonLabel: String
+    let action: () -> Void
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(action: action) {
+            Text(buttonLabel)
+                .font(.largeTitle)
+                .foregroundStyle(.white)
+                .fontWeight(.bold)
+                .padding()
+                .frame(width: 240, height: 80)
+        }
+        .background(
+            RoundedRectangle(cornerRadius: 20)
+                .fill(Color.blue)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(Color.white, lineWidth: 4)
+        )
+        .shadow(radius: 10)
     }
 }
 
 #Preview {
-    BlueButtonView()
+    BlueButtonView(buttonLabel: "Start") { print("Start") }
 }
